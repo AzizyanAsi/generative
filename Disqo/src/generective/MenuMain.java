@@ -33,14 +33,13 @@ public class MenuMain {
                     Group g = new Group(UUID.randomUUID().toString(), s);
                     System.out.println("Type Parent id");
                     String parentId = sc.nextLine();
-                    g.setParentId(parentId);
-                    g.setParentId(Storage.addGroup(g, Storage.getRoots(), true) ? "root" : parentId);
+                    Storage.addGroup(g,parentId,Storage.getRoots(), true);
                     System.out.print("Created group: ");
                     System.out.println(g);
             }
         }
         for (Group x : Storage.getRoots()) {
-            x.printGroupInfo();
+            x.printContent();
 
         }
         System.out.println(String.format("Total price %f", basket.calculatePrice()));
@@ -91,10 +90,10 @@ public class MenuMain {
                     }
                     System.out.println("Type Parent id");
                     String parentId = sc.nextLine();
-                    item.setParentId(parentId);
 
 
-                    boolean isAdded = Storage.addItem(item, Storage.getRoots());
+
+                    boolean isAdded = Storage.addItem(item,parentId, Storage.getRoots());
                     if (isAdded) {
                         System.out.print("Created item: ");
                         System.out.println(item);

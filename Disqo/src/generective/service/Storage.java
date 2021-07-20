@@ -16,19 +16,19 @@ public class Storage {
         roots.add(group);
     }
 
-    public static boolean addGroup(Group addedGroup, List<Group> groups, boolean addToRoot) {
+    public static boolean addGroup(Group addedGroup,String id, List<Group> groups, boolean addToRoot) {
         boolean isAdded = false;
         List<Group> copyGroup = new ArrayList<>(groups);
         Group parent;
         Iterator<Group> iterator = copyGroup.iterator();
         while (iterator.hasNext()) {
             parent = iterator.next();
-            if (parent.getId().equals(addedGroup.getParentId())) {
+            if (parent.getId().equals(id)) {
                 parent.getGroups().add(addedGroup);//parent group add sub
                 addedGroup.setGroupParent(parent);//sub group add parent
                 return true;
             } else {
-                isAdded = addGroup(addedGroup, parent.getGroups(), false);
+                isAdded = addGroup(addedGroup,id, parent.getGroups(), false);
                 if (isAdded) return true;
             }
         }
@@ -40,19 +40,19 @@ public class Storage {
         return false;
     }
 
-    public static boolean addItem(Item addedItem, List<Group> groups) {
+    public static boolean addItem(Item addedItem,String id, List<Group> groups) {
         boolean isAdded = false;
         List<Group> copyGroup = new ArrayList<>(groups);
         Group g;
         Iterator<Group> iterator = copyGroup.iterator();
         while (iterator.hasNext()) {
             g = iterator.next();
-            if (g.getId().equals(addedItem.getParentId())) {
+            if (g.getId().equals(id)) {
                 g.getItems().add(addedItem);
                 addedItem.setParentGroup(g);
                 return true;
             } else {
-                isAdded = addItem(addedItem, g.getGroups());
+                isAdded = addItem(addedItem,id, g.getGroups());
                 if (isAdded) return true;
             }
         }

@@ -17,8 +17,4 @@ public class Stock extends Item {
         this.configuration = configuration;
     }
 
-    @Override
-    public double calculatePrice() {
-        return price * configuration.resolution.getCoefficient();
-    }
 }

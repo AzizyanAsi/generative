@@ -3,7 +3,6 @@ package generective.models;
 import java.util.ArrayList;
 
 public class Group {
-    private String parentId;
     private String id;
     private String name;
     private ArrayList<Group> groups;
@@ -22,7 +21,7 @@ public class Group {
                 .append("}").toString();
     }
 
-    public void printGroupInfo() {
+    public void printContent() {
         System.out.printf("Current group name: %s id: %s%n [", name, id);
         System.out.println("Items: ");
         for (Item item : items) {
@@ -30,7 +29,7 @@ public class Group {
         }
 //        System.out.println("]");
         for (Group x : groups) {
-            x.printGroupInfo();
+            x.printContent();
         }
         System.out.println("]");
     }
@@ -72,14 +71,6 @@ public class Group {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getParentId() {
-        return parentId;
     }
 
     public String getName() {

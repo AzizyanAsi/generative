@@ -6,8 +6,7 @@ import generective.models.Configuration;
 import java.util.Currency;
 import java.util.Locale;
 
-public class Item {
-    protected String parentId;
+public abstract class Item {
     protected String id;
     protected String name;
     protected double price;
@@ -47,14 +46,6 @@ public class Item {
         this.parentGroup = parentGroup;
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
-
     public String getId() {
         return id;
     }
@@ -88,6 +79,6 @@ public class Item {
     }
 
     public double calculatePrice() {
-        return price;
+        return price * configuration.resolution.getCoefficient();
     }
 }
